@@ -67,18 +67,41 @@ public class NematodeVisualiser extends PApplet
 	
 	public void draw()
 	{	
-		//drawNemo();
+		
+		
 		//loop through the array if we reach the end
 		int n = nemo.size();
 		int currentIndex = index % n;
+
+		//clear canvas so nematodes arent cramped (they need space to breathe)
 		clear();
+
+		//Print nematode name
 		textSize(80);
 		textAlign(CENTER);
 		String Name = nemo.get(currentIndex).name;
 		text(Name, 400, 80);
 
 		//Print length amount of circles stacked on top of each other
+		int space = 50;
+		for(int i = 0; i < nemo.get(currentIndex).length; i++){
+			noFill();
+			stroke(255);
+			strokeWeight(12);
+			circle(400, 300 + (space * i), 50);
+
+			//Print one limb either side of the circle for each nematode which has limbs
+			if(nemo.get(currentIndex).limbs == 1){
+				line(360, 300 + (space * i), 300, 300 + (space * i));
+				line(440, 300 + (space * i), 500, 300 + (space * i));
+			}
+
+			
+		}
+
 		
+
+
 
 
 
