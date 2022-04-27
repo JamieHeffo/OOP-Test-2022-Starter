@@ -6,11 +6,11 @@ import processing.data.TableRow;
 public class Nematode {
 
     //Variables to store data of nematodes
-    private String name;
-    private float length;
-    private int limbs;
-    private String gender;
-    private String eyes;
+    String name;
+    float length;
+    int limbs;
+    String gender;
+    int eyes;
 
     public Nematode(TableRow tr) {
         this(
@@ -18,12 +18,12 @@ public class Nematode {
             tr.getFloat("length"),
             tr.getInt("limbs"),
             tr.getString("gender"),
-            tr.getString("eyes")
+            tr.getInt("eyes")
         );
     }
 
     //Constructor
-    public Nematode(String name, float length, int limbs, String gender, String eyes) {
+    public Nematode(String name, float length, int limbs, String gender, int eyes) {
         this.name = name;
         this.length = length;
         this.limbs = limbs;
@@ -56,18 +56,39 @@ public class Nematode {
     public void setGender(String gender) {
         this.gender = gender;
     }
-    public String getEyes() {
+    public int getEyes() {
         return eyes;
     }
-    public void setEyes(String eyes) {
+    public void setEyes(int eyes) {
         this.eyes = eyes;
     }
 
     //Overwrite toString method
     @Override
     public String toString() {
-        return "Nematode Eyes : " + eyes + " Gender : " + gender + " length : " + length + " limbs : " + limbs + " name : "
-                + name;
+        return "Name : " +name+" Eyes : " + eyes + " Gender : " + gender + " length : " + length + " limbs : " + limbs;
+    }
+
+    public void render(NematodeVisualiser pa){
+
+        float x = pa.width / 2;
+        float y = pa.height / 2;
+
+        for(int i = 0; i < length; i++){
+            //Print the name of the nematode
+            pa.fill(255);
+            pa.textSize(50);
+            pa.textAlign(PApplet.CENTER, PApplet.CENTER);
+            //pa.text(Nematod, pa.width / 2, pa.height - (pa.border * 0.5f));
+        }
+        
+
+        //Draw length amount of circles stacked on top of each other
+        pa.stroke(80);
+        pa.noFill();
+        pa.circle(x, y-100, 100);
+
+
     }
  
 }//end class
