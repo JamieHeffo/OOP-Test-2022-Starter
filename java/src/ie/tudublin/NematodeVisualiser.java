@@ -6,8 +6,26 @@ import processing.core.PApplet;
 import processing.data.Table;
 import processing.data.TableRow;
 
+import ddf.minim.AudioBuffer;
+import ddf.minim.AudioInput;
+import ddf.minim.AudioPlayer;
+import ddf.minim.Minim;
+import processing.core.PApplet;
+
 public class NematodeVisualiser extends PApplet
 {
+	Minim minim;
+    AudioPlayer ap;
+    AudioInput ai;
+    AudioBuffer ab;
+
+    int mode = 0;
+
+    float[] lerpedBuffer;
+    float y = 0;
+    float smoothedY = 0;
+    float smoothedAmplitude = 0;
+
 	//ArrayList of Nematode Objects
 	ArrayList<Nematode> nemo = new ArrayList<Nematode>();
 
@@ -40,7 +58,18 @@ public class NematodeVisualiser extends PApplet
 		loadNematodes();
 		printNematodes();
 		smooth();	
-		border = width * 0.1f;			
+		border = width * 0.1f;		
+		
+		minim = new Minim(this);
+        ap = minim.loadFile("bugz.mp3", 1024);
+        ap.play();
+        ab = ap.mix;
+        colorMode(HSB);
+
+        y = height / 2;
+        smoothedY = y;
+
+        lerpedBuffer = new float[width];
 	}
 	
 	//Method to load nematodes and populate arraylist
@@ -81,10 +110,12 @@ public class NematodeVisualiser extends PApplet
 		textAlign(CENTER);
 		String Name = nemo.get(currentIndex).name;
 		text(Name, 400, 80);
-
-		//Print length amount of circles stacked on top of each other
 		int space = 50;
+
+		//Iterate through arraylist the only way I know 
 		for(int i = 0; i < nemo.get(currentIndex).length; i++){
+
+			//Print length amount of circles stacked on top of each other
 			noFill();
 			stroke(255);
 			strokeWeight(12);
@@ -96,7 +127,31 @@ public class NematodeVisualiser extends PApplet
 				line(440, 300 + (space * i), 500, 300 + (space * i));
 			}
 
+			//Gender of the nematode
+			//Ran out of time but I totally could have finished this one :(
+			String male = "m";
+			String female = "f";
+			String both = "h";
+			String gender = nemo.get(currentIndex).gender;
+
+			if(gender.compareTo(male) == 0){
+
+			}
+			else if(gender.compareTo(male) == 0){
+
+			}
+			else{
+
+			}
 			
+			//Draw two lines and circles if value is 1 to give the lil dudes eyes
+			if(nemo.get(currentIndex).eyes == 1){
+				circle(350, 300 - (space), 30);
+				circle(450, 300 - (space), 30);
+				line(365, 300 - (space - 20), 380, 300 - (space - 40));
+				line(435, 300 - (space - 20), 420, 300 - (space - 40));
+			}
+
 		}
 
 		
