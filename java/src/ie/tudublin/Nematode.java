@@ -1,5 +1,8 @@
 package ie.tudublin;
 
+import processing.core.PApplet;
+import processing.data.TableRow;
+
 public class Nematode {
 
     //Variables to store data of nematodes
@@ -8,6 +11,16 @@ public class Nematode {
     private int limbs;
     private String gender;
     private String eyes;
+
+    public Nematode(TableRow tr) {
+        this(
+            tr.getString("name"),
+            tr.getFloat("length"),
+            tr.getInt("limbs"),
+            tr.getString("gender"),
+            tr.getString("eyes")
+        );
+    }
 
     //Constructor
     public Nematode(String name, float length, int limbs, String gender, String eyes) {
