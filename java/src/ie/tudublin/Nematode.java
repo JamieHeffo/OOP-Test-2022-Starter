@@ -68,27 +68,5 @@ public class Nematode {
     public String toString() {
         return "Name : " +name+" Eyes : " + eyes + " Gender : " + gender + " length : " + length + " limbs : " + limbs;
     }
-
-    public void render(NematodeVisualiser pa){
-
-        float x = pa.width / 2;
-        float y = pa.height / 2;
-
-        for(int i = 0; i < length; i++){
-            //Print the name of the nematode
-            pa.fill(255);
-            pa.textSize(50);
-            pa.textAlign(PApplet.CENTER, PApplet.CENTER);
-            //pa.text(Nematod, pa.width / 2, pa.height - (pa.border * 0.5f));
-        }
-        
-
-        //Draw length amount of circles stacked on top of each other
-        pa.stroke(80);
-        pa.noFill();
-        pa.circle(x, y-100, 100);
-
-
-    }
  
 }//end class
